@@ -1,3 +1,67 @@
+// var dateSlider = document.getElementsByClassName("slider__date_js")[0]
+// var date = new Date()
+// var input_Y = document.getElementsByClassName("slider__input_js")[0]
+// var input_M = document.getElementsByClassName("slider__input_js")[1]
+// var input_D = document.getElementsByClassName("slider__input_js")[2]
+// var button = document.getElementsByClassName("slider__button_js")[0]
+// var result = document.getElementsByClassName("slider__result_js")[0]
+// var days = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+// var body = document.body;
+
+// body.addEventListener("keydown", (e) => {
+//     console.log(e.keyCode);
+
+// })
+// console.log(date);
+// dateSlider.innerHTML = date;
+// button.addEventListener("click", function name() {
+//     dateSlider.innerHTML = new Date(input_Y.value, input_M.value, input_D.value);
+//     var ret = new Date()
+//     result.innerHTML = days[ret.getDay()]
+// })
+
+
+
+// var buttonSlider_1 = document.getElementsByClassName("slider__button_js")[0];
+// var buttonSlider_2 = document.getElementsByClassName("slider__button_js")[1];
+// var sliderLine = document.getElementsByClassName("slider__line_js")[0];
+// var a = 0;
+// var b;
+// var body = document.body;
+// var position = 0;
+// function sideRLef() {
+//     sliderLine.style.left = `${position + 100}px`;
+//     position = +100;
+//     return position;
+// }
+// function sideRig() {
+//     sliderLine.style.left = `${a - 100}px`;
+//     position = a;
+//     a -= 100;
+//     return position;
+// }
+// // buttonSlider_2.onclick = sideRig;
+
+// body.addEventListener("keydown", function (e) {
+//     console.log(e.keyCode);
+//     if (e.keyCode == 37) {
+//         sideRig();
+//     }
+//     else if (e.keyCode == 39) {
+//         sideRLef();
+//     }
+// })
+
+
+
+
+
+// buttonSlider_2.addEventListener("click", () => {
+//     sliderLine.style.left = `${position - 100}px`;
+
+//     position -= 100
+//     return position
+// })
 // // VAR
 // var quantity,
 //     position,
@@ -290,7 +354,7 @@
 
 
 
-// третье задание   
+dz6Tasc3()
 function dz6Tasc3() {
     var body = document.body,
         contextMenu = document.getElementsByClassName("context-menu_js")[0],
@@ -321,14 +385,14 @@ function dz6Tasc3() {
         contextMenu.style.display = "block";
         contextMenu.style.top = e.clientY + "px";
         contextMenu.style.left = e.clientX + "px";
-
         positionContextMenuY = e.clientY + "px";
         positionContextMenuX = e.clientX + "px";
         return positionContextMenuY, positionContextMenuX, false;
     }
+
     body.addEventListener("click", (e) => {
-        if (e.target == body) {
-            contextMenu.style.display = "none";
+        if (e.target != contextMenuItem_1 && e.target != contextMenuItem_2 && e.target != contextMenuItem_3 && e.target != contextMenuItem_4 && e.target != contextMenuItem_5) {
+            contextMenu.style.display = "none"; // нет времени более правильно делать
         }
     })
     // ESC
@@ -342,7 +406,7 @@ function dz6Tasc3() {
     // №1 добавляет/удаляет квадрат  
     contextMenuItem_1.addEventListener("click", function functionSquare() {
         body.removeEventListener("click", clickAddRemoveTriangle);
-        body.removeEventListener("mouseover", leftRightTriangle);
+        body.removeEventListener("mousemove", leftRightTriangle);
         body.addEventListener("click", clickAddRemoveSquare);
     })
 
@@ -359,7 +423,7 @@ function dz6Tasc3() {
     // №3 Добовить/удалить треугольник
     contextMenuItem_3.addEventListener("click", function functionTriangle() {
         body.removeEventListener("click", clickAddRemoveSquare);
-        body.removeEventListener("mouseover", leftRightTriangle);
+        body.removeEventListener("mousemove", leftRightTriangle);
         body.addEventListener("click", clickAddRemoveTriangle);
     })
 
@@ -391,7 +455,7 @@ function dz6Tasc3() {
             squareBlack.classList.toggle("square-black_hidden_js");
             squareBlack.style.top = e.clientY + "px";
             squareBlack.style.left = e.clientX + "px";
-        } 
+        }
     }
     squareBlack = document.getElementsByClassName("square-black_js")[0];
 
@@ -431,15 +495,6 @@ function dz6Tasc3() {
     }
     // Анимация треугольника 
     function leftRightTriangle(e) {
-        // var x = e.clientX;
-        // x = x - ((x / 100) * 70);
-        // while (x >= 100) {
-        //     x--;
-        // }
-        // while (x <= 50) {
-        //     x++;
-        // }
-        triangle.style.transition = "1s";
         triangle.style.left = e.clientX + "px";
     }
 
@@ -457,7 +512,6 @@ function dz6Tasc3() {
         }
     }
 }
-dz6Tasc3()
 
 
 
@@ -478,173 +532,185 @@ dz6Tasc3()
 
 
 
-var body = document.body,
-    inputTemper = document.getElementsByClassName("temperature__input_js")[0],
-    button = document.getElementsByClassName("temperature__button_js")[0],
-    temperSection = document.getElementsByClassName("temperature_js")[0],
-    temperResult = document.getElementsByClassName("temperature__resilt_js")[0],
-    idIntervalTemper,
-    result,
-    bgTemper = ["rgb(5, 106, 189)", "rgb(166, 190, 29)", "rgb(255, 38, 0)", "rgb(197, 180, 25)"],
-    colorTemper = ["rgb(61, 36, 172)", "#fff", "rgb(150, 66, 17)"];
+
+dz7Task1()
+dz7Task2()
+dz7Task3()
 
 
-function updateInput() {
-    idIntervalTemper = setInterval(function () {
-        if (inputTemper.value != "" && inputTemper.value != false || inputTemper.value === "0") {
-            result = Number(inputTemper.value) * 1.8 + 32;
 
-            if (inputTemper.value < -270 || inputTemper.value > 200) {
-                temperResult.innerHTML = "Результат: Такая температура не существует";
+function dz7Task1() {
+    var inputlist = document.getElementsByClassName("list__input_js")[0],
+        listCard = document.getElementsByClassName("list__card_js")[0],
+        buttonList = document.getElementsByClassName("list__button_js")[0],
+        body = document.body;
+
+
+    buttonList.addEventListener("click", addNewElementList);
+    body.addEventListener("keydown", checkKay);
+
+    function checkKay(e) {
+        if (e.keyCode == 13) {
+            addNewElementList();
+        }
+    }
+
+    function addNewElementList() {
+        if (!checkInput(inputlist.value)) {
+            setTimeout(() => {
+                inputlist.classList.toggle("list__input_invalid_js");
+            }, 0)
+            setTimeout(() => {
+                inputlist.classList.toggle("list__input_invalid_js");
+            }, 500)
+
+        }
+        if (checkInput(inputlist.value) && buttonList.innerHTML != "сохранить изменения") {
+            let newListItem = document.createElement("div");
+            newListItem.classList.add("list__item");
+            listCard.insertAdjacentElement("beforeend", newListItem);
+            newListItem.innerHTML = inputlist.value;
+            inputlist.value = "";
+
+            newListItem.addEventListener("dblclick", () => {
+                inputlist.value = "";
+                newListItem.style.transform = "translateX(100%)"
+                setTimeout(function () {
+                    newListItem.remove();
+                    buttonList.innerHTML = "новая запись";
+                    inputlist.value = "";
+                }, 200)
+            })
+
+            // внести изменения
+            newListItem.onclick = function changeListItem() {
+                setTimeout(function () {
+                    inputlist.value = newListItem.innerHTML;
+                    buttonList.innerHTML = "сохранить изменения";
+                }, 100)
+
+                // сохраняет изменения
+                buttonList.addEventListener("click", saveСhanges)
+                body.addEventListener("keydown", function keySaveСhanges(key) {
+                    if (key.keyCode == 13) {
+                        saveСhanges();
+                        body.removeEventListener("keydown", keySaveСhanges);
+                    }
+                })
+                function saveСhanges() {
+                    newListItem.innerHTML = inputlist.value;
+                    inputlist.value = "";
+                    buttonList.innerHTML = "новая запись";
+                    buttonList.removeEventListener("click", saveСhanges);
+                }
             }
+        }
+    }
+}
 
-            else if (checkInput(result) && checkNumber(result)) {
+
+
+function dz7Task2() {
+    var body = document.body,
+        inputTemper = document.getElementsByClassName("temperature__input_js")[0],
+        button = document.getElementsByClassName("temperature__button_js")[0],
+        temperSection = document.getElementsByClassName("temperature_js")[0],
+        temperResult = document.getElementsByClassName("temperature__resilt_js")[0],
+        idIntervalTemper,
+        result,
+        bgTemper = ["rgb(5, 106, 189)", "rgb(166, 190, 29)", "rgb(255, 38, 0)", "rgb(197, 180, 25)"],
+        colorTemper = ["rgb(61, 36, 172)", "#fff", "rgb(150, 66, 17)"];
+
+
+    function updateInput() {
+        // знаю что не правильно, тут я просто практиковался с setInterval
+        idIntervalTemper = setInterval(function () {
+            if (inputTemper.value != "" && inputTemper.value != false || inputTemper.value === "0") {
+                result = Number(inputTemper.value) * 1.8 + 32;
+
+                if (inputTemper.value < -270 || inputTemper.value > 200) {
+                    temperResult.innerHTML = "Результат: Такая температура не существует";
+                }
+
+                else if (checkInput(result) && checkNumber(result)) {
+                    inputTemper.style.color = "black";
+                    temperResult.innerHTML = `Результат: ${Number(inputTemper.value)}C&deg; = ${result}F&deg;`;
+                    if (inputTemper.value < 10) {
+                        temperSection.style.background = bgTemper[0];
+                        temperSection.style.color = colorTemper[1];
+                    }
+                    else if (inputTemper.value < 25) {
+                        temperSection.style.background = bgTemper[1];
+                    }
+                    else if (Number(inputTemper.value) > 10) {
+                        temperSection.style.background = bgTemper[2];
+                    }
+                }
+                else {
+                    inputTemper.style.color = "red";
+                    temperResult.innerHTML = "Результат:";
+                }
+            }
+            else if (inputTemper.value == "") {
                 inputTemper.style.color = "black";
-                temperResult.innerHTML = `Результат: ${Number(inputTemper.value)}C&deg; = ${result}F&deg;`;
-                if (inputTemper.value < 10) {
-                    temperSection.style.background = bgTemper[0];
-                    temperSection.style.color = colorTemper[1];
-                }
-                else if (inputTemper.value < 25) {
-                    temperSection.style.background = bgTemper[1];
-                }
-                else if (Number(inputTemper.value) > 10) {
-                    temperSection.style.background = bgTemper[2];
-                }
-            }
-            else {
-                inputTemper.style.color = "red";
                 temperResult.innerHTML = "Результат:";
             }
-        }
-        else if (inputTemper.value == "") {
+
+        }, 50)
+        return idIntervalTemper;
+    }
+
+    inputTemper.addEventListener("click", updateInput);
+
+    window.addEventListener("click", function (e) {
+        if (e.target != inputTemper/* e.target == body || e.target == temperBlock */) {
+            inputTemper.value = "";
             inputTemper.style.color = "black";
             temperResult.innerHTML = "Результат:";
+            temperSection.style.background = bgTemper[3];
+            temperSection.style.color = colorTemper[2];
+            clearTimeout(idIntervalTemper);
         }
-
-    }, 50)
-    return idIntervalTemper;
+    })
 }
 
-inputTemper.addEventListener("click", updateInput);
-
-window.addEventListener("click", function (e) {
-    if (e.target != inputTemper/* e.target == body || e.target == temperBlock */) {
-        inputTemper.value = "";
-        inputTemper.style.color = "black";
-        temperResult.innerHTML = "Результат:";
-        temperSection.style.background = bgTemper[3];
-        temperSection.style.color = colorTemper[2];
-        clearTimeout(idIntervalTemper);
-    }
-})
 
 
 
+function dz7Task3() {
+    var square = document.getElementsByClassName("square_js")[0],
+        boxSquare = document.getElementsByClassName("box-square_js")[0],
+        mechanism = document.getElementsByClassName("mechanism_js")[0],
+        y = 0,
+        x = 0,
+        c = -136;
+    var idSquareAnimate = setInterval(function () {
 
-
-
-
-
-var inputlist = document.getElementsByClassName("list__input_js")[0],
-    listCard = document.getElementsByClassName("list__card_js")[0],
-    buttonList = document.getElementsByClassName("list__button_js")[0],
-    body = document.body;
-
-
-buttonList.addEventListener("click", addNewElementList);
-body.addEventListener("keydown", checkKay);
-
-function checkKay(e) {
-    if (e.keyCode == 13) {
-        addNewElementList();
-    }
-}
-
-function addNewElementList() {
-    if (!checkInput(inputlist.value)) {
-        setTimeout(() => {
-            inputlist.classList.toggle("list__input_invalid_js");
-        }, 0)
-        setTimeout(() => {
-            inputlist.classList.toggle("list__input_invalid_js");
-        }, 500)
-
-    }
-    if (checkInput(inputlist.value) && buttonList.innerHTML != "сохранить изменения") {
-        let newListItem = document.createElement("div");
-        newListItem.classList.add("list__item");
-        listCard.insertAdjacentElement("beforeend", newListItem);
-        newListItem.innerHTML = inputlist.value;
-        inputlist.value = "";
-
-        newListItem.addEventListener("dblclick", () => {
-            inputlist.value = "";
-            newListItem.style.transform = "translateX(100%)"
-            setTimeout(function () {
-                newListItem.remove();
-                buttonList.innerHTML = "новая запись";
-                inputlist.value = "";
-            }, 200)
-        })
-
-        // внести изменения
-        newListItem.onclick = function changeListItem() {
-            setTimeout(function () {
-                inputlist.value = newListItem.innerHTML;
-                buttonList.innerHTML = "сохранить изменения";
-            }, 100)
-
-            // сохраняет изменения
-            buttonList.addEventListener("click", saveСhanges)
-            body.addEventListener("keydown", function keySaveСhanges(key) {
-                if (key.keyCode == 13) {
-                    saveСhanges();
-                    body.removeEventListener("keydown", keySaveСhanges);
-                }
-            })
-            function saveСhanges() {
-                newListItem.innerHTML = inputlist.value;
-                inputlist.value = "";
-                buttonList.innerHTML = "новая запись";
-                buttonList.removeEventListener("click", saveСhanges);
-            }
+        if (x >= 0 && x < 400 && y == 0) {
+            square.style.left = x++;
         }
-    }
-
+        else if (x == 400 && y < 400) {
+            square.style.top = y++;
+        }
+        else if (x <= 400 && x != 0 && y == 400) {
+            square.style.left = x--;
+        }
+        else if (y <= 400 && x == 0) {
+            square.style.top = y--;
+        }
+    }, 2)
+    setTimeout(() => setInterval(function () {
+        mechanism.style.transform = `rotate(${c++}deg)`;
+        if (mechanism.style.transform == "rotate(350deg)") {
+            square.innerHTML = "NOOO!!!";
+            square.style.transition = "1s";
+            square.style.background = "red";
+            clearInterval(idSquareAnimate);
+        }
+    }, 18), 750)
 }
 
 
-var square = document.getElementsByClassName("square_js")[0],
-    boxSquare = document.getElementsByClassName("box-square_js")[0],
-    mechanism = document.getElementsByClassName("mechanism_js")[0],
-    y = 0,
-    x = 0,
-    c = -140;
-var idSquareAnimate = setInterval(function () {
-
-    if (x >= 0 && x < 400 && y == 0) {
-        square.style.left = x++;
-    }
-    else if (x == 400 && y < 400) {
-        square.style.top = y++;
-    }
-    else if (x <= 400 && x != 0 && y == 400) {
-        square.style.left = x--;
-    }
-    else if (y <= 400 && x == 0) {
-        square.style.top = y--;
-    }
-}, 2)
-setTimeout(() => setInterval(function () {
-    mechanism.style.transform = `rotate(${c++}deg)`;
-    if (mechanism.style.transform == "rotate(350deg)") {
-        square.innerHTML = "NOOO!!!";
-        square.style.transition = "1s";
-        square.style.background = "red";
-        clearInterval(idSquareAnimate);
-    }
-}, 17.5), 800)
 
 
 
@@ -687,6 +753,34 @@ setTimeout(() => setInterval(function () {
 
 
 
+// var body = document.body;
+// var sliderLine = document.getElementsByClassName("slider__line_js")[0];
+// var position = 0;
+// var buttonLeftSlider = document.getElementsByClassName("slider__button_js")[0]
+// var buttonRightSlider = document.getElementsByClassName("slider__button_js")[1]
+// buttonLeftSlider.addEventListener("click", slideBack)
+// buttonRightSlider.addEventListener("click", slideForward)  // back forward
+// body.addEventListener("keydown", (e) => {
+//     if (e.keyCode == 39) {
+//         slideForward()
+//         console.log("влево");
+
+//     }
+//     else if (e.keyCode == 37) {
+//         slideBack()
+//     }
+// })
+
+// function slideForward() {
+//     sliderLine.style.left = `${position - 100}px`;
+//     position = position - 100
+//     return position
+// }
+// function slideBack() {
+//     sliderLine.style.left = `${position + 100}px`;
+//     position = position + 100
+//     return position
+// }
 
 /*************************** Инструменты *****************************/
 /*************************** Функциии  ******************************/
