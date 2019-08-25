@@ -580,29 +580,30 @@ function dz7Task1() {
                     buttonList.innerHTML = "новая запись";
                     inputlist.value = "";
                 }, 200)
-            })
-
+            }) 
             // внести изменения
             newListItem.onclick = function changeListItem() {
-                setTimeout(function () {
-                    inputlist.value = newListItem.innerHTML;
-                    buttonList.innerHTML = "сохранить изменения";
-                }, 100)
+                if (inputlist.value != newListItem.innerHTML) {
+                    setTimeout(function () {
+                        inputlist.value = newListItem.innerHTML;
+                        buttonList.innerHTML = "сохранить изменения";
+                    }, 50)
 
-                // сохраняет изменения
-                buttonList.addEventListener("click", saveСhanges)
-                body.addEventListener("keydown", function keySaveСhanges(key) {
-                    if (key.keyCode == 13) {
-                        saveСhanges();
-                        body.removeEventListener("keydown", keySaveСhanges);
+                    // сохраняет изменения
+                    buttonList.addEventListener("click", saveСhanges)
+                    body.onkeydown = function keySaveСhanges(key) { 
+                        if (key.keyCode == 13) {
+                            saveСhanges();
+                        }
                     }
-                })
-                function saveСhanges() {
-                    newListItem.innerHTML = inputlist.value;
-                    inputlist.value = "";
-                    buttonList.innerHTML = "новая запись";
-                    buttonList.removeEventListener("click", saveСhanges);
+                    function saveСhanges() {
+                        newListItem.innerHTML = inputlist.value;
+                        inputlist.value = "";
+                        buttonList.innerHTML = "новая запись";
+                        buttonList.removeEventListener("click", saveСhanges);
+                    }
                 }
+
             }
         }
     }
