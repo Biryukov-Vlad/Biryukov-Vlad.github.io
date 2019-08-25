@@ -580,9 +580,9 @@ function dz7Task1() {
                     buttonList.innerHTML = "новая запись";
                     inputlist.value = "";
                 }, 200)
-            }) 
+            })
             // внести изменения
-            newListItem.onclick = function changeListItem() {
+            newListItem.addEventListener("click", function changeListItem() {
                 if (inputlist.value != newListItem.innerHTML) {
                     setTimeout(function () {
                         inputlist.value = newListItem.innerHTML;
@@ -591,20 +591,21 @@ function dz7Task1() {
 
                     // сохраняет изменения
                     buttonList.addEventListener("click", saveСhanges)
-                    body.onkeydown = function keySaveСhanges(key) { 
+                    body.onkeydown = function keySaveСhanges(key) {
                         if (key.keyCode == 13) {
                             saveСhanges();
                         }
                     }
                     function saveСhanges() {
-                        newListItem.innerHTML = inputlist.value;
+                        var clone = newListItem.innerHTML;
+                        if (inputlist.value != "") clone = inputlist.value;
                         inputlist.value = "";
                         buttonList.innerHTML = "новая запись";
                         buttonList.removeEventListener("click", saveСhanges);
+                        return newListItem.innerHTML = clone;
                     }
                 }
-
-            }
+            })
         }
     }
 }
