@@ -594,7 +594,7 @@ function dz7Task1() {
                     body.onkeydown = function keySaveСhanges(key) {
                         if (key.keyCode == 13) {
                             saveСhanges();
-                        }
+                        }   
                     }
                     function saveСhanges() {
                         var clone = newListItem.innerHTML;
