@@ -354,7 +354,7 @@
 
 
 
-dz6Tasc3()
+// dz6Tasc3()
 function dz6Tasc3() {
     var body = document.body,
         contextMenu = document.getElementsByClassName("context-menu_js")[0],
@@ -535,7 +535,7 @@ function dz6Tasc3() {
 
 dz7Task1()
 dz7Task2()
-dz7Task3()
+// dz7Task3()
 
 
 
@@ -594,7 +594,7 @@ function dz7Task1() {
                     body.onkeydown = function keySaveСhanges(key) {
                         if (key.keyCode == 13) {
                             saveСhanges();
-                        }   
+                        }
                     }
                     function saveСhanges() {
                         var clone = newListItem.innerHTML;
@@ -622,7 +622,6 @@ function dz7Task2() {
         result,
         bgTemper = ["rgb(5, 106, 189)", "rgb(166, 190, 29)", "rgb(255, 38, 0)", "rgb(197, 180, 25)"],
         colorTemper = ["rgb(61, 36, 172)", "#fff", "rgb(150, 66, 17)"];
-
 
     function updateInput() {
         // знаю что не правильно, тут я просто практиковался с setInterval
@@ -755,34 +754,94 @@ function dz7Task3() {
 
 
 
-// var body = document.body;
-// var sliderLine = document.getElementsByClassName("slider__line_js")[0];
-// var position = 0;
-// var buttonLeftSlider = document.getElementsByClassName("slider__button_js")[0]
-// var buttonRightSlider = document.getElementsByClassName("slider__button_js")[1]
-// buttonLeftSlider.addEventListener("click", slideBack)
-// buttonRightSlider.addEventListener("click", slideForward)  // back forward
-// body.addEventListener("keydown", (e) => {
-//     if (e.keyCode == 39) {
-//         slideForward()
-//         console.log("влево");
+var body = document.body;
+sliderLine = document.getElementsByClassName("slider__line_js")[0],
+  sliderСontrolLeft = document.getElementsByClassName("slider__control_js")[0],
+  sliderСontrolRight = document.getElementsByClassName("slider__control_js")[1],
+  sliderBullet_1 = document.getElementsByClassName("slider__bullet_js")[0],
+  sliderBullet_2 = document.getElementsByClassName("slider__bullet_js")[1],
+  sliderBullet_3 = document.getElementsByClassName("slider__bullet_js")[2],
+  slederItem_1 = document.getElementsByClassName("slider__item_js")[0],
 
-//     }
-//     else if (e.keyCode == 37) {
-//         slideBack()
-//     }
-// })
+  // вспомогательные переменные
+  position = 0,
+  coordinates = 0,
+  valueWidth = 33.333333333333336,
+  maxValueWidth = -66.6666666666666,
 
-// function slideForward() {
-//     sliderLine.style.left = `${position - 100}px`;
-//     position = position - 100
-//     return position
-// }
-// function slideBack() {
-//     sliderLine.style.left = `${position + 100}px`;
-//     position = position + 100
-//     return position
-// }
+  color = [
+    "#9c9c9c", // gray
+    "#3590cc", // blue
+  ];
+
+// цвет элементов по дэфолту
+sliderBullet_1.style.background = color[1];
+sliderСontrolLeft.style.opacity = "0.5";
+sliderСontrolLeft.style.cursor = "auto";
+
+sliderСontrolLeft.addEventListener("click", slideBack);
+sliderСontrolRight.addEventListener("click", slideForward);
+sliderLine.addEventListener("click", slideForward)
+
+body.addEventListener("keydown", (e) => {
+  if (e.keyCode == 39) {
+    slideForward();
+  }
+  else if (e.keyCode == 37) {
+    slideBack();
+  }
+})
+
+// назад
+function slideBack() {
+  if (coordinates < 0) {
+    sliderLine.style.transform = `translateX(${coordinates + valueWidth}%)`;
+    coordinates = coordinates + valueWidth;
+    colorBullet();
+    if (sliderLine.style.transform == `translateX(0%)`) {
+      sliderСontrolLeft.style.opacity = "0.5";
+      sliderСontrolLeft.style.cursor = "auto";
+    }
+    return coordinates, position;
+  }
+}
+// вперёд 
+function slideForward() {
+  if (coordinates >= maxValueWidth) {
+    sliderLine.style.transform = `translateX(${coordinates - valueWidth}%)`;
+    coordinates = coordinates - valueWidth;
+    colorBullet();
+    sliderСontrolLeft.style.opacity = "1";
+    sliderСontrolLeft.style.cursor = "pointer";
+    return coordinates;
+  }
+  else {
+    sliderLine.style.transform = `translateX(0%)`;
+    coordinates = 0;
+    sliderСontrolLeft.style.opacity = "0.5";
+    sliderСontrolLeft.style.cursor = "auto";
+    colorBullet();
+    return coordinates;
+  }
+}
+// цвет були
+function colorBullet() {
+  if (coordinates == 0) {
+    sliderBullet_1.style.background = color[1];
+    sliderBullet_2.style.background = color[0];
+    sliderBullet_3.style.background = color[0];
+  }
+  else if (coordinates == -33.333333333333336) {
+    sliderBullet_1.style.background = color[0];
+    sliderBullet_2.style.background = color[1];
+    sliderBullet_3.style.background = color[0];
+  }
+  else if (coordinates == -66.66666666666667) {
+    sliderBullet_1.style.background = color[0];
+    sliderBullet_2.style.background = color[0];
+    sliderBullet_3.style.background = color[1];
+  }
+}
 
 /*************************** Инструменты *****************************/
 /*************************** Функциии  ******************************/
