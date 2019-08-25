@@ -1145,7 +1145,7 @@ function createElements(element, name, quantity) {
 
 // ////////////////////////////////////////////////////////////////////////////
 // // функция которая находит продукт по цене, выводит название продукта и цену
-// function searchProductPrice(price) {
+// function searchProductPrice(price) { 
 //     var found;
 //     for (i = 0; i < shop.products.length; i++) {
 //         if (shop.products[i].price === Number(price)) {
