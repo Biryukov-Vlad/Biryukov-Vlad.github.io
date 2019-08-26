@@ -354,7 +354,7 @@
 
 
 
-// dz6Tasc3()
+dz6Tasc3()
 function dz6Tasc3() {
     var body = document.body,
         contextMenu = document.getElementsByClassName("context-menu_js")[0],
@@ -535,7 +535,7 @@ function dz6Tasc3() {
 
 dz7Task1()
 dz7Task2()
-// dz7Task3()
+dz7Task3()
 
 
 
@@ -755,94 +755,99 @@ function dz7Task3() {
 
 
 var body = document.body;
-sliderLine = document.getElementsByClassName("slider__line_js")[0],
-  sliderСontrolLeft = document.getElementsByClassName("slider__control_js")[0],
-  sliderСontrolRight = document.getElementsByClassName("slider__control_js")[1],
-  sliderBullet_1 = document.getElementsByClassName("slider__bullet_js")[0],
-  sliderBullet_2 = document.getElementsByClassName("slider__bullet_js")[1],
-  sliderBullet_3 = document.getElementsByClassName("slider__bullet_js")[2],
-  slederItem_1 = document.getElementsByClassName("slider__item_js")[0],
 
-  // вспомогательные переменные
-  position = 0,
-  coordinates = 0,
-  valueWidth = 33.333333333333336,
-  maxValueWidth = -66.6666666666666,
+slider()
 
-  color = [
-    "#9c9c9c", // gray
-    "#3590cc", // blue
-  ];
+function slider() {
+  var sliderLine = document.getElementsByClassName("slider__line_js")[0],
+    sliderСontrolLeft = document.getElementsByClassName("slider__control_js")[0],
+    sliderСontrolRight = document.getElementsByClassName("slider__control_js")[1],
+    sliderBullet_1 = document.getElementsByClassName("slider__bullet_js")[0],
+    sliderBullet_2 = document.getElementsByClassName("slider__bullet_js")[1],
+    sliderBullet_3 = document.getElementsByClassName("slider__bullet_js")[2], 
 
-// цвет элементов по дэфолту
-sliderBullet_1.style.background = color[1];
-sliderСontrolLeft.style.opacity = "0.5";
-sliderСontrolLeft.style.cursor = "auto";
+    // вспомогательные переменные
+    position = 0,
+    coordinates = 0,
+    valueWidth = 33.333333333333336,
+    maxValueWidth = -66.6666666666666,
 
-sliderСontrolLeft.addEventListener("click", slideBack);
-sliderСontrolRight.addEventListener("click", slideForward);
-sliderLine.addEventListener("click", slideForward)
+    color = [
+      "#9c9c9c", // gray
+      "#3590cc", // blue
+    ];
 
-body.addEventListener("keydown", (e) => {
-  if (e.keyCode == 39) {
-    slideForward();
+  // цвет элементов по дэфолту
+  sliderBullet_1.style.background = color[1];
+  sliderСontrolLeft.style.opacity = "0.5";
+  sliderСontrolLeft.style.cursor = "auto";
+
+  sliderСontrolLeft.addEventListener("click", slideBack);
+  sliderСontrolRight.addEventListener("click", slideForward);
+  sliderLine.addEventListener("click", slideForward)
+
+  body.addEventListener("keydown", (e) => {
+    if (e.keyCode == 39) {
+      slideForward();
+    }
+    else if (e.keyCode == 37) {
+      slideBack();
+    }
+  })
+
+  // назад
+  function slideBack() {
+    if (coordinates < 0) {
+      sliderLine.style.transform = `translateX(${coordinates + valueWidth}%)`;
+      coordinates = coordinates + valueWidth;
+      colorBullet();
+      if (sliderLine.style.transform == `translateX(0%)`) {
+        sliderСontrolLeft.style.opacity = "0.5";
+        sliderСontrolLeft.style.cursor = "auto";
+      }
+      return coordinates, position;
+    }
   }
-  else if (e.keyCode == 37) {
-    slideBack();
-  }
-})
-
-// назад
-function slideBack() {
-  if (coordinates < 0) {
-    sliderLine.style.transform = `translateX(${coordinates + valueWidth}%)`;
-    coordinates = coordinates + valueWidth;
-    colorBullet();
-    if (sliderLine.style.transform == `translateX(0%)`) {
+  // вперёд 
+  function slideForward() {
+    if (coordinates >= maxValueWidth) {
+      sliderLine.style.transform = `translateX(${coordinates - valueWidth}%)`;
+      coordinates = coordinates - valueWidth;
+      colorBullet();
+      sliderСontrolLeft.style.opacity = "1";
+      sliderСontrolLeft.style.cursor = "pointer";
+      return coordinates;
+    }
+    else {
+      sliderLine.style.transform = `translateX(0%)`;
+      coordinates = 0;
       sliderСontrolLeft.style.opacity = "0.5";
       sliderСontrolLeft.style.cursor = "auto";
+      colorBullet();
+      return coordinates;
     }
-    return coordinates, position;
   }
-}
-// вперёд 
-function slideForward() {
-  if (coordinates >= maxValueWidth) {
-    sliderLine.style.transform = `translateX(${coordinates - valueWidth}%)`;
-    coordinates = coordinates - valueWidth;
-    colorBullet();
-    sliderСontrolLeft.style.opacity = "1";
-    sliderСontrolLeft.style.cursor = "pointer";
-    return coordinates;
-  }
-  else {
-    sliderLine.style.transform = `translateX(0%)`;
-    coordinates = 0;
-    sliderСontrolLeft.style.opacity = "0.5";
-    sliderСontrolLeft.style.cursor = "auto";
-    colorBullet();
-    return coordinates;
-  }
-}
-// цвет були
-function colorBullet() {
-  if (coordinates == 0) {
-    sliderBullet_1.style.background = color[1];
-    sliderBullet_2.style.background = color[0];
-    sliderBullet_3.style.background = color[0];
-  }
-  else if (coordinates == -33.333333333333336) {
-    sliderBullet_1.style.background = color[0];
-    sliderBullet_2.style.background = color[1];
-    sliderBullet_3.style.background = color[0];
-  }
-  else if (coordinates == -66.66666666666667) {
-    sliderBullet_1.style.background = color[0];
-    sliderBullet_2.style.background = color[0];
-    sliderBullet_3.style.background = color[1];
+  // цвет були
+  function colorBullet() {
+    if (coordinates == 0) {
+      sliderBullet_1.style.background = color[1];
+      sliderBullet_2.style.background = color[0];
+      sliderBullet_3.style.background = color[0];
+    }
+    else if (coordinates == -33.333333333333336) {
+      sliderBullet_1.style.background = color[0];
+      sliderBullet_2.style.background = color[1];
+      sliderBullet_3.style.background = color[0];
+    }
+    else if (coordinates == -66.66666666666667) {
+      sliderBullet_1.style.background = color[0];
+      sliderBullet_2.style.background = color[0];
+      sliderBullet_3.style.background = color[1];
+    }
   }
 }
 
+// 
 /*************************** Инструменты *****************************/
 /*************************** Функциии  ******************************/
 //проверка на Number
@@ -1145,7 +1150,7 @@ function createElements(element, name, quantity) {
 
 // ////////////////////////////////////////////////////////////////////////////
 // // функция которая находит продукт по цене, выводит название продукта и цену
-// function searchProductPrice(price) { 
+// function searchProductPrice(price) {
 //     var found;
 //     for (i = 0; i < shop.products.length; i++) {
 //         if (shop.products[i].price === Number(price)) {
