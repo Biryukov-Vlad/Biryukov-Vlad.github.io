@@ -391,8 +391,8 @@ function dz6Tasc3() {
     }
 
     body.addEventListener("click", (e) => {
-        if (e.target != contextMenuItem_1 && e.target != contextMenuItem_2 && e.target != contextMenuItem_3 && e.target != contextMenuItem_4 && e.target != contextMenuItem_5) {
-            contextMenu.style.display = "none"; // нет времени более правильно делать
+        if (e.target !=contextMenu) {
+            contextMenu.style.display = "none";
         }
     })
     // ESC
@@ -1145,12 +1145,12 @@ function createElements(element, name, quantity) {
 
 //     if (counter === 0) {
 //         alert("Такого товара нет в наличии");
-//     } 
+//     }
 // }
 
 // ////////////////////////////////////////////////////////////////////////////
 // // функция которая находит продукт по цене, выводит название продукта и цену
-// function searchProductPrice(price) {
+// function searchProductPrice(price) {  
 //     var found;
 //     for (i = 0; i < shop.products.length; i++) {
 //         if (shop.products[i].price === Number(price)) {
