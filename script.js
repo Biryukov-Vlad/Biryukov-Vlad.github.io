@@ -21,47 +21,7 @@
 // })
 
 
-
-// var buttonSlider_1 = document.getElementsByClassName("slider__button_js")[0];
-// var buttonSlider_2 = document.getElementsByClassName("slider__button_js")[1];
-// var sliderLine = document.getElementsByClassName("slider__line_js")[0];
-// var a = 0;
-// var b;
-// var body = document.body;
-// var position = 0;
-// function sideRLef() {
-//     sliderLine.style.left = `${position + 100}px`;
-//     position = +100;
-//     return position;
-// }
-// function sideRig() {
-//     sliderLine.style.left = `${a - 100}px`;
-//     position = a;
-//     a -= 100;
-//     return position;
-// }
-// // buttonSlider_2.onclick = sideRig;
-
-// body.addEventListener("keydown", function (e) {
-//     console.log(e.keyCode);
-//     if (e.keyCode == 37) {
-//         sideRig();
-//     }
-//     else if (e.keyCode == 39) {
-//         sideRLef();
-//     }
-// })
-
-
-
-
-
-// buttonSlider_2.addEventListener("click", () => {
-//     sliderLine.style.left = `${position - 100}px`;
-
-//     position -= 100
-//     return position
-// })
+ 
 // // VAR
 // var quantity,
 //     position,
@@ -354,7 +314,7 @@
 
 
 
-dz6Tasc3()
+// dz6Tasc3()
 function dz6Tasc3() {
     var body = document.body,
         contextMenu = document.getElementsByClassName("context-menu_js")[0],
@@ -535,7 +495,7 @@ function dz6Tasc3() {
 
 dz7Task1()
 dz7Task2()
-dz7Task3()
+// dz7Task3()
 
 
 
@@ -610,7 +570,7 @@ function dz7Task1() {
     }
 }
 
-
+ 
 
 function dz7Task2() {
     var body = document.body,
@@ -754,100 +714,264 @@ function dz7Task3() {
 
 
 
+
 var body = document.body;
 
-slider()
-
+slider();
+lamp();
+date()
 function slider() {
-  var sliderLine = document.getElementsByClassName("slider__line_js")[0],
-    sliderСontrolLeft = document.getElementsByClassName("slider__control_js")[0],
-    sliderСontrolRight = document.getElementsByClassName("slider__control_js")[1],
-    sliderBullet_1 = document.getElementsByClassName("slider__bullet_js")[0],
-    sliderBullet_2 = document.getElementsByClassName("slider__bullet_js")[1],
-    sliderBullet_3 = document.getElementsByClassName("slider__bullet_js")[2], 
+   var sliderLine = document.getElementsByClassName("slider__line_js")[0],
+      sliderСontrolLeft = document.getElementsByClassName("slider__control_js")[0],
+      sliderСontrolRight = document.getElementsByClassName("slider__control_js")[1],
+      sliderBullet_1 = document.getElementsByClassName("slider__bullet_js")[0],
+      sliderBullet_2 = document.getElementsByClassName("slider__bullet_js")[1],
+      sliderBullet_3 = document.getElementsByClassName("slider__bullet_js")[2],
 
-    // вспомогательные переменные
-    position = 0,
-    coordinates = 0,
-    valueWidth = 33.333333333333336,
-    maxValueWidth = -66.6666666666666,
+      // вспомогательные переменные
+      position = 0,
+      coordinates = 0,
+      valueWidth = 33.333333333333336,
+      maxValueWidth = -66.6666666666666,
 
-    color = [
-      "#9c9c9c", // gray
-      "#3590cc", // blue
-    ];
+      color = [
+         "#9c9c9c", // Gray
+         "#3590cc", // Blue
+      ];
 
-  // цвет элементов по дэфолту
-  sliderBullet_1.style.background = color[1];
-  sliderСontrolLeft.style.opacity = "0.5";
-  sliderСontrolLeft.style.cursor = "auto";
+   // стили по дэфолту
+   sliderBullet_1.style.background = color[1];
+   sliderСontrolLeft.style.opacity = "0.5";
+   sliderСontrolLeft.style.cursor = "auto";
 
-  sliderСontrolLeft.addEventListener("click", slideBack);
-  sliderСontrolRight.addEventListener("click", slideForward);
-  sliderLine.addEventListener("click", slideForward)
+   sliderСontrolLeft.addEventListener("click", slideBack);
+   sliderСontrolRight.addEventListener("click", slideForward);
+   sliderLine.addEventListener("click", slideForward)
 
-  body.addEventListener("keydown", (e) => {
-    if (e.keyCode == 39) {
-      slideForward();
-    }
-    else if (e.keyCode == 37) {
-      slideBack();
-    }
-  })
-
-  // назад
-  function slideBack() {
-    if (coordinates < 0) {
-      sliderLine.style.transform = `translateX(${coordinates + valueWidth}%)`;
-      coordinates = coordinates + valueWidth;
-      colorBullet();
-      if (sliderLine.style.transform == `translateX(0%)`) {
-        sliderСontrolLeft.style.opacity = "0.5";
-        sliderСontrolLeft.style.cursor = "auto";
+   body.addEventListener("keydown", (e) => {
+      if (e.keyCode == 39) {
+         slideForward();
       }
-      return coordinates, position;
-    }
-  }
-  // вперёд 
-  function slideForward() {
-    if (coordinates >= maxValueWidth) {
-      sliderLine.style.transform = `translateX(${coordinates - valueWidth}%)`;
-      coordinates = coordinates - valueWidth;
-      colorBullet();
-      sliderСontrolLeft.style.opacity = "1";
-      sliderСontrolLeft.style.cursor = "pointer";
-      return coordinates;
-    }
-    else {
-      sliderLine.style.transform = `translateX(0%)`;
-      coordinates = 0;
-      sliderСontrolLeft.style.opacity = "0.5";
-      sliderСontrolLeft.style.cursor = "auto";
-      colorBullet();
-      return coordinates;
-    }
-  }
-  // цвет були
-  function colorBullet() {
-    if (coordinates == 0) {
-      sliderBullet_1.style.background = color[1];
-      sliderBullet_2.style.background = color[0];
-      sliderBullet_3.style.background = color[0];
-    }
-    else if (coordinates == -33.333333333333336) {
-      sliderBullet_1.style.background = color[0];
-      sliderBullet_2.style.background = color[1];
-      sliderBullet_3.style.background = color[0];
-    }
-    else if (coordinates == -66.66666666666667) {
-      sliderBullet_1.style.background = color[0];
-      sliderBullet_2.style.background = color[0];
-      sliderBullet_3.style.background = color[1];
-    }
-  }
+      else if (e.keyCode == 37) {
+         slideBack();
+      }
+   })
+
+   // назад
+   function slideBack() {
+      if (coordinates < 0) {
+         sliderLine.style.transform = `translateX(${coordinates + valueWidth}%)`;
+         coordinates = coordinates + valueWidth;
+         colorBullet();
+         if (sliderLine.style.transform == `translateX(0%)`) {
+            sliderСontrolLeft.style.opacity = "0.5";
+            sliderСontrolLeft.style.cursor = "auto";
+         }
+         return coordinates, position;
+      }
+   }
+   // вперёд 
+   function slideForward() {
+      if (coordinates >= maxValueWidth) {
+         sliderLine.style.transform = `translateX(${coordinates - valueWidth}%)`;
+         coordinates = coordinates - valueWidth;
+         colorBullet();
+         sliderСontrolLeft.style.opacity = "1";
+         sliderСontrolLeft.style.cursor = "pointer";
+         return coordinates;
+      }
+      else {
+         sliderLine.style.transform = `translateX(0%)`;
+         coordinates = 0;
+         sliderСontrolLeft.style.opacity = "0.5";
+         sliderСontrolLeft.style.cursor = "auto";
+         colorBullet();
+         return coordinates;
+      }
+   }
+   // цвет були
+   function colorBullet() {
+      if (coordinates == 0) {
+         sliderBullet_1.style.background = color[1];
+         sliderBullet_2.style.background = color[0];
+         sliderBullet_3.style.background = color[0];
+      }
+      else if (coordinates == -33.333333333333336) {
+         sliderBullet_1.style.background = color[0];
+         sliderBullet_2.style.background = color[1];
+         sliderBullet_3.style.background = color[0];
+      }
+      else if (coordinates == -66.66666666666667) {
+         sliderBullet_1.style.background = color[0];
+         sliderBullet_2.style.background = color[0];
+         sliderBullet_3.style.background = color[1];
+      }
+   }
 }
 
-// 
+//  лампочки   
+
+function lamp() {
+   var lampSection = document.getElementsByClassName("lamp_js")[0],
+      lampBlack = document.getElementsByClassName("lamp__img-lamp_black_js")[0],
+      lampYellow = document.getElementsByClassName("lamp__img-lamp_yellow_js")[0],
+      lampBlue = document.getElementsByClassName("lamp__img-lamp_blue_js")[0],
+      lampTitle = document.getElementsByClassName("lamp__title_js")[0],
+
+      color = [
+         "rgba(0, 0, 0, 0.5)",        //(Black)  
+         "rgba(239, 206, 74, 0.5)",   //(Yellow)  
+         "rgba(66, 141, 255, 0.5)",   //(Blue)  
+         "rgb(255, 255, 255)"         //White
+      ],
+      filterOpacity = [
+         "opacity(0.5)",
+         "opacity(1)"
+      ],
+      textTitle = [
+         "наведите на лампочку",
+         "навели на чёрную",
+         "навели на жёлтую",
+         "навели на синюю"
+      ];
+
+   // стили по дэфолту
+   lampTitle.innerHTML = textTitle[0];
+   lampSection.style.background = color[3];
+   lampBlack.style.filter = filterOpacity[0];
+   lampYellow.style.filter = filterOpacity[0];
+   lampBlue.style.filter = filterOpacity[0];
+
+   //Чёрная
+   lampBlack.addEventListener("mouseover", function () {
+      lampSection.style.background = color[0];
+      lampBlack.style.filter = filterOpacity[1];
+      lampTitle.innerHTML = textTitle[1];
+   })
+   lampBlack.addEventListener("mouseout", function () {
+      lampSection.style.background = color[3];
+      lampBlack.style.filter = filterOpacity[0];
+      lampTitle.innerHTML = textTitle[0];
+
+   })
+
+   //Желтая
+   lampYellow.addEventListener("mouseover", function () {
+      lampSection.style.background = color[1];
+      lampYellow.style.filter = filterOpacity[1];
+      lampTitle.innerHTML = textTitle[2];
+   })
+   lampYellow.addEventListener("mouseout", function () {
+      lampSection.style.background = color[3];
+      lampYellow.style.filter = filterOpacity[0];
+      lampTitle.innerHTML = textTitle[0];
+   })
+
+   //Синяя
+   lampBlue.addEventListener("mouseover", function () {
+      lampSection.style.background = color[2];
+      lampBlue.style.filter = filterOpacity[1];
+      lampTitle.innerHTML = textTitle[3];
+   })
+   lampBlue.addEventListener("mouseout", function () {
+      lampSection.style.background = color[3];
+      lampBlue.style.filter = filterOpacity[0];
+      lampTitle.innerHTML = textTitle[0];
+   })
+}
+
+
+
+
+
+
+function date() {
+   var dateResult = document.getElementsByClassName("date__result_js")[0],
+      dateInput = document.getElementsByClassName("date__input_js")[0],
+      idInterval;
+
+
+   dateInput.addEventListener("click", function clickInput() {
+      var cloneInputValue = "";
+      dateInput.value = "2020.10.10";
+
+      dateInput.addEventListener("keydown", function watchInput() {
+
+         setTimeout(function validInput() {
+            if (dateInput.value == " " || dateInput.value == "-") {
+               dateInput.value = cloneInputValue;
+            }
+            else if (dateInput.value != " " && dateInput.value != "-") {
+               cloneInputValue = dateInput.value;
+            }
+         }, 100)
+      })
+
+      body.onkeydown = function enterCompareDate(e) {
+         if (e.keyCode == 13) {
+            compareDate();
+         }
+      }
+      function compareDate() {
+         if (idInterval) {
+            clearInterval(idInterval);
+         }
+         var arrClone = dateInput.value;
+         arrClone = arrClone.split(".");
+         var arrDate = arrClone;
+         idInterval = setInterval(dateTimer, 1000);
+         dateTimer();
+
+         function dateTimer() {
+            var dateToday = new Date();
+            var number = 60;
+            var dateCurrent = new Date(`${arrDate[2]}/${arrDate[1]}/${arrDate[0]}`);
+            var clone = Math.ceil((dateCurrent - dateToday) / 1000);
+            var days = Math.floor(clone / (number * number * 24));
+            clone = clone % (number * number * 24);
+            var hours = Math.floor(clone / (number * number));
+            clone = clone % (number * number);
+            var minutes = Math.floor(clone / number);
+            clone = clone % number;
+            var second = clone;
+            if (dateCurrent > dateToday) {
+               dateResult.innerHTML =
+                  days + " дней " +
+                  hours + " часов " +
+                  minutes + " минут " +
+                  second + " секунд ";
+               return idInterval;
+            }
+            else if (dateCurrent < dateToday) {
+               dateResult.innerHTML = "Время прошло";
+               return idInterval;
+            }
+            else {
+               dateResult.innerHTML = "";
+               var a = 0;
+               for (let i = 0; i < 6; i++) {
+                  a = a + 500;
+                  setTimeout(() => {
+                     dateInput.classList.toggle("date__input_invalid_js");
+                     return a;
+                  }, a)
+               }
+               clearInterval(idInterval);
+            }
+         }
+      }
+      dateInput.removeEventListener("click", clickInput);
+   })
+}
+
+
+
+
+
+
+
+
+
 /*************************** Инструменты *****************************/
 /*************************** Функциии  ******************************/
 //проверка на Number
@@ -1150,7 +1274,7 @@ function createElements(element, name, quantity) {
 
 // ////////////////////////////////////////////////////////////////////////////
 // // функция которая находит продукт по цене, выводит название продукта и цену
-// function searchProductPrice(price) {  
+// function searchProductPrice(price) {
 //     var found;
 //     for (i = 0; i < shop.products.length; i++) {
 //         if (shop.products[i].price === Number(price)) {
