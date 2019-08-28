@@ -493,8 +493,8 @@ function dz6Tasc3() {
 
 
 
-dz7Task1()
-dz7Task2()
+// dz7Task1()
+// dz7Task2()
 // dz7Task3()
 
 
@@ -720,6 +720,8 @@ var body = document.body;
 slider();
 lamp();
 date()
+parallax()
+
 function slider() {
    var sliderLine = document.getElementsByClassName("slider__line_js")[0],
       sliderСontrolLeft = document.getElementsByClassName("slider__control_js")[0],
@@ -896,7 +898,7 @@ function date() {
       dateInput.value = "2020.10.10";
 
       dateInput.addEventListener("keydown", function watchInput() {
-
+         //валидация инпута
          setTimeout(function validInput() {
             if (dateInput.value == " " || dateInput.value == "-") {
                dateInput.value = cloneInputValue;
@@ -913,9 +915,11 @@ function date() {
          }
       }
       function compareDate() {
+         //если есть запущенный таймер - отменить и запустить новый с новыми данными
          if (idInterval) {
             clearInterval(idInterval);
          }
+         // обработка полученных данных
          var arrClone = dateInput.value;
          arrClone = arrClone.split(".");
          var arrDate = arrClone;
@@ -934,6 +938,7 @@ function date() {
             var minutes = Math.floor(clone / number);
             clone = clone % number;
             var second = clone;
+            //выводим результат если время не прошло
             if (dateCurrent > dateToday) {
                dateResult.innerHTML =
                   days + " дней " +
@@ -942,11 +947,13 @@ function date() {
                   second + " секунд ";
                return idInterval;
             }
+            //время прошло
             else if (dateCurrent < dateToday) {
-               dateResult.innerHTML = "Время прошло";
+               dateResult.innerHTML = "Время прошло как и 2007";
                return idInterval;
             }
             else {
+               //поругаться немного)
                dateResult.innerHTML = "";
                var a = 0;
                for (let i = 0; i < 6; i++) {
@@ -966,12 +973,37 @@ function date() {
 
 
 
+//////////////////////////////////////
+//////////////////////////////////////
+///////////////PARALLAX///////////////
+//////////////////////////////////////
+//////////////////////////////////////
 
 
 
+function parallax() {
 
+   var imgParallax = document.getElementsByClassName("parallax__img_js")[0],
+      position = 0;
 
-
+   body.addEventListener("mousewheel", function (e) {
+      if (e.wheelDelta == -120) {
+         if (position != -60) {
+            position = position - 10
+            imgParallax.style.transform = `translateY(${position}px)`
+            return position
+         }
+      }
+      else if (e.wheelDelta == 120) {
+         if (position != 80) {
+            position = position + 10
+            imgParallax.style.transform = `translateY(${position}px)`
+            return position
+         }
+      }
+   })
+}
+ 
 /*************************** Инструменты *****************************/
 /*************************** Функциии  ******************************/
 //проверка на Number
