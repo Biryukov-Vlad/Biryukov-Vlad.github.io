@@ -61,8 +61,6 @@ function dz9Task1() {
 }
 
 
-
-
 function dz9Task3() {
    const input = document.getElementsByClassName("sum-number__input_js")[0],
       result = document.getElementsByClassName("sum-number__result_js")[0];
@@ -108,14 +106,14 @@ function dz9Task3() {
 function checkTel() {
    const input = document.getElementsByClassName("number-tel__input_js")[0],
       result = document.getElementsByClassName("number-tel__tesult_js")[0];
-   var regExpMTC = RegExp(/^(8)(910|915|916|919)[\d{7}]{6}\d$|^\+(7)(910|915|916|919)[\d{7}]{6}\d$/),
+   var regExpMTC = RegExp(/^(8)(910|987|915|916|919)[\d{7}]{6}\d$|^\+(7)(910|987|915|916|919)[\d{7}]{6}\d$/),
       regExpMegafon = RegExp(/^(8)(929|925|926)[\d{7}]{6}\d$|^\+(7)(929|925|926)[\d{7}]{6}\d$/),
       regExpBeeline = RegExp(/^(8)(903|905|906|909|961|962|963|964|695)[\d{7}]{6}\d$|^\+(7)(903|905|906|909|961|962|963|964|695)[\d{7}]{6}\d$/),
       clone = "";
    /**
     * 
     * @param { String }   принимает название оператора в ""
-    * @param { String }   принимает строку которую нужно проверить
+    * @param { String }   принимает строку которую нужно проверить, начинает проверку с начала строки
     * @return false||true в зависимости есть ли совпадение с номером оператора 
     */
    function chechMobileOperator(operator, element) {
@@ -168,6 +166,7 @@ function checkTel() {
 function dz9Animation() {
    const input = document.getElementsByClassName("sum-number-v-2__input_js")[0],
       result = document.getElementsByClassName("sum-number-v-2__result_js")[0];
+
    var summ,
       cloneInputValue = "",
       arrNumber = [];
@@ -191,8 +190,6 @@ function dz9Animation() {
             if (e.keyCode == 13) {
 
                arrNumber.push(input.value);
-               input.value = "";
-
                sumNumberInput(arrNumber);
 
                let numberAnimation = document.createElement("div");
@@ -207,12 +204,11 @@ function dz9Animation() {
                }, 7)
                setTimeout(function name() {
                   clearInterval(idInterval);
+                  input.value = "";
                   numberAnimation.remove();
                   result.innerHTML = `Результат: ${summ}`;
                   cloneInputValue = "";
                }, 300)
-
-
             }
          }
       }, 1)
