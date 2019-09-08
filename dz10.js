@@ -41,25 +41,25 @@ for (var i = 0; i < steam.store.length; i++) {
 for (var i = 0; i < hookah.store.length; i++) {
    hookah.create();
 }
-steam.searchPrice()
-hookah.searchPrice()
+steam.searchPrice();
+hookah.searchPrice();
 
 
 function searchName(name) {
-   let check
+   let check;
    for (let i = 0; i < this.store.length; i++) {
 
       let notThat = document.getElementsByClassName(`${this.name}__item_js`)[i];
       if (notThat) {
-         notThat.style.display = "none"
-         check = this.store[i].name.indexOf(name)
+         notThat.style.display = "none";
+         check = this.store[i].name.indexOf(name);
          if (check != Number(-1)) {
             let exactMatch = document.getElementsByClassName(`${this.name}__item_js`)[i];
-            exactMatch.style.display = "flex"
+            exactMatch.style.display = "flex";
          }
          if (document.getElementsByClassName(`${this.name}__input-search_js`)[0].value.length <= 0) {
             for (let i = 0; i < this.store.length; i++) {
-               notThat.style.display = "flex"
+               notThat.style.display = "flex";
             }
          }
       }
@@ -68,12 +68,11 @@ function searchName(name) {
 
 function searchPrice() {
    const input = document.querySelectorAll(`.${this.name}__search-price_js`);
-   const item = document.querySelectorAll(`.${this.name}__item_js`)
+   const item = document.querySelectorAll(`.${this.name}__item_js`);
 
    let checkRange = (i) => {
       if (input[0].value <= this.store[i].price && input[1].value >= this.store[i].price) {
-         console.log(this.store[i].price)
-         return true
+         return true;
       };
    }
 
@@ -87,7 +86,7 @@ function searchPrice() {
          }
       }
       else if (e.keyCode == 46) {
-         this.deleteResultSearch()
+         this.deleteResultSearch();
       }
 
    }
@@ -98,10 +97,10 @@ function searchPrice() {
             if (input[0].value != 0 && input[1].value != 0) {
                for (let i = 0; i < this.store.length; i++) {
                   if (checkRange(i)) {
-                     item[i].style.display = "flex"
+                     item[i].style.display = "flex";
                   }
                   else {
-                     item[i].style.display = "none"
+                     item[i].style.display = "none";
                   }
                }
             }
@@ -109,77 +108,14 @@ function searchPrice() {
       }
    }
 
-   input[0].addEventListener("keydown", inputProcessing)
-   input[1].addEventListener("keydown", inputProcessing)
-   input[0].addEventListener("keydown", checkKey)
-   input[1].addEventListener("keydown", checkKey)
+   input[0].addEventListener("keydown", inputProcessing);
+   input[1].addEventListener("keydown", inputProcessing);
+   input[0].addEventListener("keydown", checkKey);
+   input[1].addEventListener("keydown", checkKey);
 }
-
-
-
-
-// не самое лучшее решение, тут я только знакомился с this, потом searchPrice сделал более правильно
-inputSteam.addEventListener("keydown", (e) => {
-   setTimeout(
-      () => {
-         if (steam.store.length != 0) {
-            steam.searchName(`${inputSteam.value}`);
-         }
-      }
-      , 20)
-   setTimeout(
-      () => {
-         if (e.keyCode == 46) {
-            steam.deleteResultSearch()
-         }
-      }
-      , 20)
-})
-
-inputHookah.addEventListener("keydown", (e) => {
-   setTimeout(
-      () => {
-         if (hookah.store.length != 0) {
-            hookah.searchName(`${inputHookah.value}`)
-         }
-      }
-      , 20)
-   setTimeout(
-      () => {
-         if (e.keyCode == 46) {
-            hookah.deleteResultSearch()
-         }
-      }
-      , 20)
-})
-
-// удалить элемент/элементы  
-function deleteResultSearch() {
-
-   let item = document.querySelectorAll(`.${this.name}__item_js`)
-   let arr = [];
-   // ищем позицию элементов со стилем d flex
-   // записываем в arr
-   for (let i = 0; i < item.length; i++) {
-      if (item[i].style.display == "flex") {
-         arr.push(i)
-      }
-   }
-   let a = 1;
-   for (let i = arr.length - 1; i >= 0; i--) {
-      this.store.splice(arr[i], 1);
-      setTimeout(() => {
-         item[arr[i]].style.transform = "translateX(1300px)"
-         setTimeout(() => {
-            item[arr[i]].remove();
-         }, 1200)
-      }, a * i * 100)
-   }
-}
-
 
 function createItem() {
-   const container = document.getElementsByClassName(`${this.name}__container`)[0]
+   const container = document.getElementsByClassName(`${this.name}__container`)[0];
    const item = document.createElement("div");
    const name = document.createElement("div");
    const price = document.createElement("div");
@@ -199,21 +135,15 @@ function createItem() {
    inputReprice.classList.add(`${this.name}__reprice`, `${this.name}__reprice_js`);
    avatar.classList.add(`${this.name}__avatar`, `${this.name}__avatar_js`);
    boxAvatar.classList.add(`${this.name}__box-avatar`, `${this.name}__box-avatar_js`);
-   //вспомогательная переменная
-   let that = this
+   //вспомогательная переменная 
    // ключеные стили 
-   item.style.display = "flex"
-   item.style.position = "relative"
-   inputRename.style.position = "absolute"
-   inputRename.style.display = "none"
-   inputReprice.style.position = "absolute"
-   inputReprice.style.display = "none"
-   avatar.style.background = `url("${this.store[i].img}")`
-   avatar.style.backgroundRepeat = "no-repeat"
-   avatar.style.backgroundSize = "cover"
+   item.style.display = "flex";
+   inputReprice.style.display = "none";
+   inputRename.style.display = "none";
+   avatar.style.background = `url("${this.store[i].img}")0% 0% / cover no-repeat`;
    // довляем атрибут инпуту
-   inputRename.setAttribute("placeholder", "Новое название...")
-   inputReprice.setAttribute("placeholder", "Новое цена...")
+   inputRename.setAttribute("placeholder", "Новое название...");
+   inputReprice.setAttribute("placeholder", "Новое цена...");
 
    // добавляем текст   
    price.innerHTML = `${this.store[i].price}`;
@@ -230,15 +160,22 @@ function createItem() {
    name.insertAdjacentElement("beforeend", inputRename);
    price.insertAdjacentElement("beforeend", inputReprice);
    // присваиваем элементам события 
+   var deleteByCross = deleteByCross.bind(this)
+   var rename = rename.bind(this)
+   var rePrice = rePrice.bind(this)
 
-   // удаление кликом по крестику
-   deleteItem.addEventListener("click", function deleteByCross(e) {
+   deleteItem.addEventListener("click", deleteByCross)
+   name.addEventListener("dblclick", rename)
+   price.addEventListener("dblclick", rePrice)
+
+   // // меняем название двойным кликом по названию  
+   function deleteByCross(e) {
       // ищем позицию элемента в списке    
-      for (let i = 0; i < that.store.length; i++) {
-         if (e.target == document.querySelectorAll(`.${that.name}__close_js`)[i]
-            || e.target == document.querySelectorAll(`.${that.name}__delete_js`)[i]) {
+      for (let i = 0; i < this.store.length; i++) {
+         if (e.target == document.querySelectorAll(`.${this.name}__close_js`)[i]
+            || e.target == document.querySelectorAll(`.${this.name}__delete_js`)[i]) {
             // удаляем из массива store объект   
-            that.store.splice(i, 1);
+            this.store.splice(i, 1);
             item.style.transform = "translateX(1300px)";
             // удаляем элемент из DOM 
             setTimeout(() => {
@@ -247,84 +184,158 @@ function createItem() {
             break;
          }
       }
-   })
+   }
 
-
-   // меняем название двойным кликом по названию  
-   name.addEventListener("dblclick", function rename(e) {
-      let newName = document.querySelectorAll(`.${that.name}__name_js`);
-      let input = document.querySelectorAll(`.${that.name}__rename_js`);
-
-      //скрыть все инпуты rename 
-      for (let i = 0; i < that.store.length; i++) {
-         input[i].style.display = "none";
-         input[i].value = that.store[i].name
+   // // меняем название двойным кликом по названию   
+   function rename(e) {
+      let newName = document.querySelectorAll(`.${this.name}__name_js`);
+      let input = document.querySelectorAll(`.${this.name}__rename_js`);
+      let position;
+      // определяеи позицию 
+      for (let i = 0; i < this.store.length; i++) {
+         if (e.target == newName[i] || e.target == input[i]) {
+            // записывам позицию 
+            position = i
+            break
+         }
       }
-
-      // ищем позицию по которой был совершён даблклик
-      for (let i = 0; i < that.store.length; i++) {
-         //показать инпут  с позицией i (если соответствует)
-         if (e.target == newName[i]) {
+      for (let i = 0; i < this.store.length; i++) {
+         if (input[i] != input[position]) {
+            input[i].style.display = "none";
+            input[i].value = this.store[i].name;
+         }
+         else {
+            input[i].value = this.store[i].name;
+            input[i].onblur = () => {
+               input[i].style.display = "none"
+            }
             let newText = newName[i].childNodes[0];
-            input[i].style.display = "block";
-            input[i].addEventListener("keydown", function n(e) {
+            input[i].style.display = "block"
+            input[i].addEventListener("keydown", (e) => {
                if (e.keyCode == 13) {
                   newText.nodeValue = input[i].value;
-                  that.store[i].name = input[i].value;
+                  this.store[i].name = input[i].value;
                   input[i].style.display = "none";
                }
                else if (e.keyCode == 27) {
                   input[i].style.display = "none";
                }
             })
-            break;
          }
       }
-   })
 
-   price.addEventListener("dblclick", function rename(e) {
-      let newPrice = document.querySelectorAll(`.${that.name}__price_js`);
-      let input = document.querySelectorAll(`.${that.name}__reprice_js`);
-      //скрыть все инпуты reprice
-      for (let i = 0; i < that.store.length; i++) {
-         input[i].style.display = "none";
-         input[i].value = that.store[i].price
+   }
+
+   function rePrice(e) {
+      const newPrice = document.querySelectorAll(`.${this.name}__price_js`);
+      const input = document.querySelectorAll(`.${this.name}__reprice_js`);
+      let position = 0;
+      // определяеи позицию 
+      for (let i = 0; i < this.store.length; i++) {
+         if (e.target == newPrice[i] || e.target == input[i]) {
+            // записывам позицию 
+            position = i
+            break
+         }
       }
-      // ищем позицию по которой был совершён даблклик
-      for (let i = 0; i < that.store.length; i++) {
-         //показать инпут  с позицией i (если соответствует)
-         if (e.target == newPrice[i]) {
+      console.log(position);
+      for (let i = 0; i < this.store.length; i++) {
+         if (input[i] != input[position]) {
+            input[i].style.display = "none";
+            input[i].value = this.store[i].price;
+         }
+         else {
+            input[i].onblur = () => {
+               input[i].style.display = "none"
+            }
+            let clone = this.store[i].price
             let newNumber = newPrice[i].childNodes[0];
-            input[i].style.display = "block";
-            var clone = that.store[i].price
-            input[i].addEventListener("keydown", function n(e) {
+            input[i].value = this.store[i].price;
+            input[i].style.display = "block"
+            input[i].addEventListener("keydown", (e) => {
                setTimeout(() => {
                   if (true) {
                      if (!checkInputSymbols(input[i]) && !checkInputStr(input[i]) && !/ /.test(input[i].value)) {
-                        clone = input[i].value
+                        clone = input[i].value;
                         if (e.keyCode == 13) {
                            newNumber.nodeValue = input[i].value;
-                           that.store[i].price = Number(input[i].value);
+                           this.store[i].price = Number(input[i].value);
                            input[i].style.display = "none";
                         }
                      }
-                     else input[i].value = clone
+                     else input[i].value = clone;
                   }
                   if (e.keyCode == 27) {
                      input[i].style.display = "none";
                   }
                }, 20);
             })
-            break;
          }
       }
-   })
+   }
+}
 
+// удалить элемент/элементы  
+function deleteResultSearch() {
+
+   let item = document.querySelectorAll(`.${this.name}__item_js`);
+   let arr = [];
+   // ищем позицию элементов со стилем d flex
+   // записываем в arr
+   for (let i = 0; i < item.length; i++) {
+      if (item[i].style.display == "flex") {
+         arr.push(i);
+      }
+   }
+   let a = 1;
+   for (let i = arr.length - 1; i >= 0; i--) {
+      this.store.splice(arr[i], 1);
+      setTimeout(() => {
+         item[arr[i]].style.transform = "translateX(1300px)"
+         setTimeout(() => {
+            item[arr[i]].remove();
+         }, 1200)
+      }, a * i * 100)
+   }
 }
 
 
 
 
+// не самое лучшее решение, тут я только знакомился с this, потом searchPrice сделал более правильно
+inputSteam.addEventListener("keydown", (e) => {
+   setTimeout(
+      () => {
+         if (steam.store.length != 0) {
+            steam.searchName(`${inputSteam.value}`);
+         }
+      }
+      , 20)
+   setTimeout(
+      () => {
+         if (e.keyCode == 46) {
+            steam.deleteResultSearch();
+         }
+      }
+      , 20)
+})
+
+inputHookah.addEventListener("keydown", (e) => {
+   setTimeout(
+      () => {
+         if (hookah.store.length != 0) {
+            hookah.searchName(`${inputHookah.value}`);
+         }
+      }
+      , 20)
+   setTimeout(
+      () => {
+         if (e.keyCode == 46) {
+            hookah.deleteResultSearch();
+         }
+      }
+      , 20)
+})
 
 
 

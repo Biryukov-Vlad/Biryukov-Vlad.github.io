@@ -21,7 +21,7 @@ function checkString(check) {
  * @return false||true
  */
 function checkInputStr(input) {
-    if (/ *[a-zа-я]/i.test(input.value)) return true;
+    if (/ *[a-zа-я|ё]/i.test(input.value)) return true;
     else false;
 }
 /**
@@ -33,7 +33,7 @@ function checkInputStr(input) {
  * @return false||true
  */
 function checkInputSymbols(input) {
-    if (/ *[.|<|>|?|;|:|"|'|`|!|@|#|$|%|^|&|*|(|)|\||/|[|{|}|_|+|=|,]/.test(input.value)) return true;
+    if (/ *[.|<|>|?|;|:|"|'|~|`|!|@|#|$|%|^|&|*|(|)|\||/|[|{|}|_|+|=|,]/.test(input.value)) return true;
     else false;
 }
 
