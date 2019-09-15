@@ -208,10 +208,10 @@
 //       .catch(err => console.log(err))
 //       .finally(() => console.log("Промис отработал"))
 //   })   // item.style.position = "relative";
-   // inputRename.style.position = "absolute";
-   // inputReprice.style.position = "absolute";
-   // avatar.style.backgroundRepeat = "no-repeat";
-   // avatar.style.backgroundSize = "cover";
+// inputRename.style.position = "absolute";
+// inputReprice.style.position = "absolute";
+// avatar.style.backgroundRepeat = "no-repeat";
+// avatar.style.backgroundSize = "cover";
 
 
 
@@ -355,14 +355,7 @@
 
 
 
-
-
-
-
-
-
-
-
+ 
 
 
 
